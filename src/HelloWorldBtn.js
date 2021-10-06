@@ -1,15 +1,16 @@
-import './helloWorld.css';
+// import './helloWorld.css';
+import styles from './Login.module.css';
 
 class HelloWorldButton {
     render() {
         const button = document.createElement('button');
         button.innerHTML = 'Hello world';
-        button.classList.add('hello-world-button');
+        button.classList.add(styles.button);
         const body = document.querySelector('body');
         button.onclick = function () {
             const p = document.createElement('p');
             p.innerHTML = 'me me me';
-            p.classList.add('hello-world-text');
+            p.classList.add(styles.text);
             body.appendChild(p);
         }
         body.appendChild(button);
