@@ -15,6 +15,43 @@ function helloWorld () {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (helloWorld); 
 
+/***/ }),
+/* 2 */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _kiwi_png__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3);
+/* harmony import */ var _alttext_txt__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
+
+
+
+
+function addImage () {
+    const img = document.createElement('img');
+    img.alt = _alttext_txt__WEBPACK_IMPORTED_MODULE_1__;
+    img.width = 300;
+    img.src= _kiwi_png__WEBPACK_IMPORTED_MODULE_0__;
+    const body = document.querySelector('body');
+    body.appendChild(img); 
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (addImage);
+
+/***/ }),
+/* 3 */
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__.p + "e7534fd7b93acc2d333b.png";
+
+/***/ }),
+/* 4 */
+/***/ ((module) => {
+
+module.exports = "KiwiNana atl text ";
+
 /***/ })
 /******/ 	]);
 /************************************************************************/
@@ -71,15 +108,23 @@ function helloWorld () {
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		__webpack_require__.p = "dist/";
+/******/ 	})();
+/******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helloWorld__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _addImage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
 
 
-(0,_helloWorld__WEBPACK_IMPORTED_MODULE_0__["default"])() 
+
+(0,_helloWorld__WEBPACK_IMPORTED_MODULE_0__["default"])();
+(0,_addImage__WEBPACK_IMPORTED_MODULE_1__["default"])();
 })();
 
 /******/ })()
