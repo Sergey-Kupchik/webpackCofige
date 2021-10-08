@@ -1,0 +1,16 @@
+$iconColorPrimary:#8793a3;
+$iconColorSecondary:red;
+$iconColorTertiary:#3f51b5;
+
+.button {
+    font-size: 20px;
+    padding: 7px 15px;
+    background: $iconColorSecondary;
+    color: $iconColorTertiary;
+    outline: none;
+}
+
+.text {
+    color: $iconColorPrimary;
+    font-weight: bold;
+}
