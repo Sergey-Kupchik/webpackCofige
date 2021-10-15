@@ -2,7 +2,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { title } = require("process");
+
 
 module.exports = {
     entry: "./src/index.js",
@@ -49,17 +49,29 @@ module.exports = {
                         plugins: ['@babel/plugin-proposal-class-properties']
                     }
                 }
+            },
+            {
+                test: /\.hbs$/,
+                use: [
+                    'handlebars-loader'
+                ]
             }
-
         ]
     },
     plugins: [
         new MiniCssExtractPlugin({
             filename: 'styles.[contenthash].css'
         }),
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            title: "My unic title",
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: [
+                '**/*',
+                path.join(process.cwd(), 'build/**/*')
+            ]
         }),
+        new HtmlWebpackPlugin({
+            title: 'Hello world',
+            template: 'src/index.hbs',
+            description: 'Some description'
+        })
     ]
 };
