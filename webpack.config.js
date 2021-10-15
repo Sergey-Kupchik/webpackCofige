@@ -1,11 +1,15 @@
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 module.exports = {
     entry: "./src/index.js",
     output: {
-        filename: "bundle.js",
+        filename: "bundle.[contenthash].js",
         path: path.resolve(__dirname, "./dist"),
-        publicPath: "dist/"
+        publicPath: ""
     },
     mode: "none",
     module: {
@@ -15,7 +19,7 @@ module.exports = {
                 type: 'asset',
                 parser: {
                     dataUrlCondition: {
-                        maxSize: 3*1024 // 3 kilobytes
+                        maxSize: 3 * 1024 // 3 kilobytes
                     }
                 },
             },
@@ -26,13 +30,13 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    'style-loader', 'css-loader', 
+                    MiniCssExtractPlugin.loader, 'css-loader',
                 ]
             },
             {
                 test: /\.scss$/,
                 use: [
-                    'style-loader', 'css-loader', 'sass-loader'
+                    MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'
                 ]
             },
             {
@@ -41,12 +45,33 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: [ '@babel/env' ],
-                        plugins: [ '@babel/plugin-proposal-class-properties' ]
+                        presets: ['@babel/env'],
+                        plugins: ['@babel/plugin-proposal-class-properties']
                     }
                 }
+            },
+            {
+                test: /\.hbs$/,
+                use: [
+                    'handlebars-loader'
+                ]
             }
-
         ]
-    }
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'styles.[contenthash].css'
+        }),
+        new CleanWebpackPlugin({
+            cleanOnceBeforeBuildPatterns: [
+                '**/*',
+                path.join(process.cwd(), 'build/**/*')
+            ]
+        }),
+        new HtmlWebpackPlugin({
+            title: 'Hello world',
+            template: 'src/index.hbs',
+            description: 'Some description'
+        })
+    ]
 };
