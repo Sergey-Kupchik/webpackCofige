@@ -5,13 +5,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
-    entry: "./src/index.js",
+    entry: {
+        'helloPage': './src/helloPage.js',
+        'kiwiPage': './src/kiwiPage.js',
+    },
     output: {
-        filename: "bundle.[contenthash].js",
+        filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, "./dist"),
         publicPath: ""
     },
-    mode: "production",
+    mode: 'production',
     module: {
         rules: [
             {
@@ -60,7 +63,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'styles.[contenthash].css'
+            filename: '[name].[contenthash].css'
         }),
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: [
